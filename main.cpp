@@ -1,32 +1,100 @@
-#include <istream>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
-//rand() % 3; //AI 랜덤 설정
+//캡슐화, 은닉화,
+
+class FBall
+{
+public:
+	int Number;
+};
+
+class FPocket
+{
+public:
+	FPocket(int Count = 45)
+	{
+		srand((unsigned int)time(nullptr));
+
+		for (int i = 0; i < Count; ++i)
+		{
+			FBall NewBall;
+			NewBall.Number = i + 1;
+			Balls.push_back(NewBall);
+		}
+	}
+
+	void Shuffle()
+	{
+		random_shuffle(Balls.begin(), Balls.end());
+	}
+	FBall Draw()
+	{
+		FBall DrawBall = *(Balls.begin());
+		Balls.erase(Balls.begin());
+
+		return DrawBall;
+	}
+
+	vector<FBall> Balls;
+};
 
 int main()
 {
-	int Ball[45]; //메모리에 저장한다.
+	FPocket* Pocket = new FPocket();
 
-	srand(time(0)); //시간으로 초기화할것이다.
-	
-	for(int i = 0; i < 6; ++i)
+	Pocket->Shuffle();
+
+	for (int i = 0; i < 6; ++i)
 	{
-	    int Choice = (rand() % 45);
-		cout << Ball[Choice] << endl;
+		cout << Pocket->Draw().Number << endl;
 	}
 
-
-
-	
-
-
-	
-	
-
-	return 0;
+	delete Pocket;
 }
 
-//int Count = 6;
-//FPocket* Ball[45];
-//Ball[0] = new FPocket(1);
+
+//int main()
+//{
+//	vector<int> Ball;
+//
+//	for (int i = 0; i < 45; ++i)
+//	{
+//		Ball.push_back(i + 1);
+//	}
+//
+//	srand((unsigned int)time(0));
+//
+//	random_shuffle(Ball.begin(), Ball.end());
+//	//shuffle
+//	//for (int i = 0; i < 45 * 10000; ++i)
+//	//{
+//	//	int First = (rand() % 45);
+//	//	int Second = (rand() % 45);
+//
+//	//	//swap()
+//	//	int Temp = Ball[First];
+//	//	Ball[First] = Ball[Second];
+//	//	Ball[Second] = Temp;
+//	//}
+//
+//	for (int i = 0; i < 6; ++i)
+//	{
+//		cout << Ball[i] << endl;
+//	}
+//
+//
+//
+//
+//	//for (int i = 0; i < 6; ++i)
+//	//{
+//
+//	//	cout << Ball[i] << endl;
+//	//}
+//
+//
+//	return 0;
+//}
