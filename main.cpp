@@ -4,33 +4,41 @@
 
 using namespace std;
 
-//Ä¸½¶È­, Àº´ÐÈ­,
+//Ä¸½¶È­, Àº´ÐÈ­, Encapsulelation
 
-class FBall
+class AActor
 {
-public:
-	int Number;
+
 };
 
-class FPocket
+class FBall : public AActor
 {
 public:
-	FPocket(int Count = 45)
+	int GetNumber() { return Number; }
+	void SetNumber(int Value)
 	{
-		srand((unsigned int)time(nullptr));
-
-		for (int i = 0; i < Count; ++i)
+		if (Value > 0)
 		{
-			FBall NewBall;
-			NewBall.Number = i + 1;
-			Balls.push_back(NewBall);
+			Number = Value;
 		}
 	}
 
+private:
+	int Number;
+};
+
+class FPocket : public AActor
+{
+public:
+	FPocket() { }
+
 	void Shuffle()
 	{
+		srand((unsigned int)time(nullptr));
+
 		random_shuffle(Balls.begin(), Balls.end());
 	}
+
 	FBall Draw()
 	{
 		FBall DrawBall = *(Balls.begin());
@@ -39,6 +47,12 @@ public:
 		return DrawBall;
 	}
 
+	void Push(FBall NewBall)
+	{
+		Balls.push_back(NewBall);
+	}
+
+private:
 	vector<FBall> Balls;
 };
 
@@ -46,11 +60,20 @@ int main()
 {
 	FPocket* Pocket = new FPocket();
 
+	for (int i = 0; i < 45; ++i)
+	{
+		FBall Ball;
+		Ball.SetNumber(i + 1);
+		Pocket->Push(Ball);
+	}
+
 	Pocket->Shuffle();
 
 	for (int i = 0; i < 6; ++i)
 	{
-		cout << Pocket->Draw().Number << endl;
+		FBall Ball = Pocket->Draw();
+
+		cout << Ball.GetNumber() << endl;
 	}
 
 	delete Pocket;
