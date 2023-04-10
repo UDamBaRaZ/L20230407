@@ -82,31 +82,31 @@ int main()
 
 //int main()
 //{
-//	vector<int> Ball;
+//	vector<int> ball;
 //
 //	for (int i = 0; i < 45; ++i)
 //	{
-//		Ball.push_back(i + 1);
+//		ball.push_back(i + 1);
 //	}
 //
 //	srand((unsigned int)time(0));
 //
-//	random_shuffle(Ball.begin(), Ball.end());
+//	random_shuffle(ball.begin(), ball.end());
 //	//shuffle
 //	//for (int i = 0; i < 45 * 10000; ++i)
 //	//{
-//	//	int First = (rand() % 45);
-//	//	int Second = (rand() % 45);
+//	//	int first = (rand() % 45);
+//	//	int second = (rand() % 45);
 //
 //	//	//swap()
-//	//	int Temp = Ball[First];
-//	//	Ball[First] = Ball[Second];
-//	//	Ball[Second] = Temp;
+//	//	int temp = ball[first];
+//	//	ball[first] = ball[second];
+//	//	ball[second] = temp;
 //	//}
 //
 //	for (int i = 0; i < 6; ++i)
 //	{
-//		cout << Ball[i] << endl;
+//		cout << ball[i] << endl;
 //	}
 //
 //
@@ -115,7 +115,7 @@ int main()
 //	//for (int i = 0; i < 6; ++i)
 //	//{
 //
-//	//	cout << Ball[i] << endl;
+//	//	cout << ball[i] << endl;
 //	//}
 //
 //
